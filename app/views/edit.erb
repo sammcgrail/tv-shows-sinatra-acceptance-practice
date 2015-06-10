@@ -1,6 +1,6 @@
 <h1>Edit <%= show.title %></h1>
 
-<form action="/television_shows" method="post">
+<form action="/television_shows/edit/<%= show.id %>" method="post">
   <div>
     <label for="title">Title:</label>
     <input type="text" id="title" name="television_show[title]" value="<%= show.title %>">
@@ -36,7 +36,7 @@
 
   <div>
     <label for="synopsis">Synopsis:</label>
-    <textarea id="synopsis" name="television_show[synopsis]" value="<%= show.synopsis %>"></textarea>
+    <textarea id="synopsis" name="television_show[synopsis]" ><%= show.synopsis %></textarea>
   </div>
 
   <input type="submit" value="Edit TV show">

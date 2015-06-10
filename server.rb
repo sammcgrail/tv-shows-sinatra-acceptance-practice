@@ -30,6 +30,21 @@ get "/television_shows/edit/:id" do
   erb :edit, locals: { show: show }
 end
 
+post "/television_shows/edit/:id" do
+  show = TelevisionShow.find(params[:id])
+  show.title = params[:television_show][:title]
+  show.network = params[:television_show][:network]
+  show.starting_year = params[:television_show][:starting_year]
+  show.ending_year = params[:television_show][:ending_year]
+  show.genre = params[:television_show][:genre]
+  show.synopsis = params[:television_show][:synopsis]
+  if show.save
+    redirect "/television_shows"
+  else
+    erb :edit, locals: { show: show }
+  end
+end
+
 
 post "/television_shows" do
   show = TelevisionShow.new(params[:television_show])
