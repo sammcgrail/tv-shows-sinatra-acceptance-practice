@@ -1,5 +1,6 @@
 require "sinatra"
 require "sinatra/activerecord"
+require "pry"
 
 set :views, File.join(File.dirname(__FILE__), "app/views")
 require_relative "app/models/television_show"
@@ -20,12 +21,18 @@ end
 
 get "/television_shows/:id" do
   show = TelevisionShow.find(params[:id])
+
   erb :show, locals: { show: show }
 end
 
+get "/television_shows/edit/:id" do
+  show = TelevisionShow.find(params[:id])
+  erb :edit, locals: { show: show }
+end
+
+
 post "/television_shows" do
   show = TelevisionShow.new(params[:television_show])
-
   if show.save
     redirect "/television_shows"
   else
